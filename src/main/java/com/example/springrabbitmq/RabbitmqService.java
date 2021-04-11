@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitmqService {
 
+    /**
+     * Rabbitmq queue 리스너 설정.
+     *
+     * @param message
+     */
     @RabbitListener(queues = "testQueue")
     public void testQueueListener(Message message) {
         System.out.println("Received: " + message);
@@ -25,7 +30,7 @@ public class RabbitmqService {
     @RabbitListener(bindings = @QueueBinding(
         value = @Queue,
         exchange = @Exchange(value = "test.topic", type = "topic"),
-        key = "client.#")
+        key = "topic.#")
     )
     public void topicBinding(Message message) {
         System.out.println("Received: " + message);
@@ -34,8 +39,8 @@ public class RabbitmqService {
 
     @RabbitListener(bindings = @QueueBinding(
         value = @Queue,
-        exchange = @Exchange(value = "test.topic", type = "topic"),
-        key = "client.#")
+        exchange = @Exchange(value = "test.topic2", type = "topic"),
+        key = "topic2.#")
     )
     public void topicBinding2(Message message) {
         System.out.println("Received: " + message);

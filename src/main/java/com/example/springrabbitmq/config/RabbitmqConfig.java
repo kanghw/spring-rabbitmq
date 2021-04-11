@@ -1,7 +1,6 @@
 package com.example.springrabbitmq.config;
 
 import org.springframework.amqp.core.AcknowledgeMode;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -31,10 +30,5 @@ public class RabbitmqConfig {
             container.setAcknowledgeMode(AcknowledgeMode.AUTO);
         });
         return factory;
-    }
-
-    @Bean
-    public TopicExchange topicExchange() {
-        return new TopicExchange("test.topic");
     }
 }
